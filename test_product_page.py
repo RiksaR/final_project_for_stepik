@@ -1,9 +1,14 @@
 from .pages.product_page import ProductPage
+import pytest
 
+list_of_param = list(map(str, range(10)))
 
-def test_guest_can_add_product_to_basket(browser):
-    link = f"http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-" \
-           f"handbook_209/?promo=newYear"
+@pytest.mark.parametrize('param', [
+    x if x != '7' else pytest.param(x, marks=pytest.mark.xfail) for x in list_of_param
+])
+def test_guest_can_add_product_to_basket(browser, param):
+    link = f"http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_" \
+           f"207/?promo=offer{param}"
     page = ProductPage(browser, link)
     page.open()
     page.add_to_basket()
