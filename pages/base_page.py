@@ -1,9 +1,11 @@
-from selenium.common.exceptions import NoSuchElementException
-from selenium.common.exceptions import NoAlertPresentException
-from selenium.common.exceptions import TimeoutException
 import math
-from selenium.webdriver.support.ui import WebDriverWait
+
+from selenium.common.exceptions import NoAlertPresentException
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+
 from .locators import BasePageLocators
 
 
@@ -46,7 +48,7 @@ class BasePage():
         self.browser.get(self.url)
 
     def should_be_authorized_user(self):
-        assert self.is_element_present(*BasePageLocators.USER_ICON),\
+        assert self.is_element_present(*BasePageLocators.USER_ICON), \
             "User icon is not presented, probably unauthorised user"
 
     def should_be_login_link(self):

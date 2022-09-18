@@ -1,7 +1,6 @@
 from .base_page import BasePage
 from .locators import BasketPageLocators
 
-
 languages = {
     "ar": "سلة التسوق فارغة",
     "ca": "La seva cistella està buida",
@@ -34,8 +33,7 @@ class BasketPage(BasePage):
         ).text
         text_lst = text.split('.')
         empty_text = text_lst[0]
-        print(empty_text)
-        assert empty_text in languages.values(),\
+        assert empty_text in languages.values(), \
             'Incorrect text with a message about an empty basket'
 
     def should_be_block_with_a_message_about_an_empty_basket(self):
